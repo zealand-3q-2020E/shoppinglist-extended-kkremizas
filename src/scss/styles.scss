@@ -1,5 +1,6 @@
 $fontColor: #0091aa;
 $colorHeading: #be4a14;
+$colorBody: #000000;
 #content  // div with id: content
 {
     color: $fontColor;
@@ -12,6 +13,11 @@ h2
 
 h1{
     @extend h2;
+}
+
+h3
+{
+    color: $colorBody;
 }
 
 ul {
