@@ -2,6 +2,7 @@
 let inputElement:HTMLInputElement = <HTMLInputElement> document.getElementById("myInput")
 let buttonElement:HTMLButtonElement = <HTMLButtonElement> document.getElementById("myButton")
 let contentElement: HTMLDivElement = <HTMLDivElement>document.getElementById("content")
+
 let list = document.getElementById("list")
 
 
@@ -13,16 +14,27 @@ inputElement.addEventListener("keyup", function(event) {
         }
     })
 
-function addElementWithClick(m:MouseEvent){
+function addElementWithClick(){
+
+        // Creating new item from input
         console.log("button click")
         let inputText:string = inputElement.value
         contentElement.innerHTML="You typed "+ inputText
         let newElement = document.createElement("li")
         let newElementText = document.createTextNode(inputText)
-        newElement.setAttribute("id","10")
-        newElement.setAttribute("class", "unhealthy")
         newElement.appendChild(newElementText)
         console.log(newElementText)
+
+        // Health Selection
+        let dropdown:HTMLSelectElement = <HTMLSelectElement> document.getElementById("dropdown")
+        let dropdownIndex:number = dropdown.selectedIndex
+        let dropdownSelection:HTMLOptionElement = dropdown.options[dropdownIndex]
+        if (dropdownSelection.getAttribute("id")=="healthy")
+            {newElement.setAttribute("class", "healthy")}
+        else {newElement.setAttribute("class", "unhealthy")}
+        
+        // Add new item on the list
         list.appendChild(newElement)
+
     }
 
