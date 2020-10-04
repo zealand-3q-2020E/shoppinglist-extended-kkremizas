@@ -4,6 +4,8 @@ let buttonElement:HTMLButtonElement = <HTMLButtonElement> document.getElementByI
 let contentElement: HTMLDivElement = <HTMLDivElement>document.getElementById("content")
 
 let list = document.getElementById("list")
+let listItems:HTMLCollectionOf<HTMLLIElement> = <HTMLCollectionOf<HTMLLIElement>> list.children
+
 
 
 buttonElement.addEventListener("click",addElementWithClick);
@@ -25,6 +27,12 @@ function addElementWithClick(){
         newElement.appendChild(newElementText)
         console.log(newElementText)
 
+        // Ascending id in new item
+        let lastChild:HTMLLIElement = <HTMLLIElement> list.lastElementChild
+        let lastChildId:number = +lastChild.getAttribute("id")
+        let newElementId:number = lastChildId +1
+        newElement.setAttribute("id",newElementId.toString())
+
         // Health Selection
         let dropdown:HTMLSelectElement = <HTMLSelectElement> document.getElementById("dropdown")
         let dropdownIndex:number = dropdown.selectedIndex
@@ -35,6 +43,20 @@ function addElementWithClick(){
         
         // Add new item on the list
         list.appendChild(newElement)
-
     }
+
+// count healthy items in list
+
+
+
+var healthCount = 0
+        for (let index = 0; index < listItems.length; index++) {
+            const element = listItems[index];
+            if (element.getAttribute("class")=="healthy")
+            healthCount++
+        }
+
+        var healthiness = (healthCount/listItems.length*100).toString()+"% healthy"
+let healthinessHeader:HTMLHeadElement = <HTMLHeadElement> document.getElementById("listHealth")
+healthinessHeader.innerHTML = healthiness
 
