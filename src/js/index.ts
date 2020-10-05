@@ -6,7 +6,7 @@ let contentElement: HTMLDivElement = <HTMLDivElement>document.getElementById("co
 let list = document.getElementById("list")
 let listItems:HTMLCollectionOf<HTMLLIElement> = <HTMLCollectionOf<HTMLLIElement>> list.children
 
-
+calculateHealthiness()
 
 buttonElement.addEventListener("click",addElementWithClick);
 inputElement.addEventListener("keyup", function(event) {
@@ -43,20 +43,24 @@ function addElementWithClick(){
         
         // Add new item on the list
         list.appendChild(newElement)
+
+        calculateHealthiness()
     }
 
-// count healthy items in list
 
+// calculate healthiness of shopping list
 
+function calculateHealthiness(){
 
+        
 var healthCount = 0
-        for (let index = 0; index < listItems.length; index++) {
-            const element = listItems[index];
-            if (element.getAttribute("class")=="healthy")
-            healthCount++
-        }
-
-        var healthiness = (healthCount/listItems.length*100).toString()+"% healthy"
-let healthinessHeader:HTMLHeadElement = <HTMLHeadElement> document.getElementById("listHealth")
+for (let index = 0; index < listItems.length; index++) {
+    const element = listItems[index];
+    if (element.getAttribute("class")=="healthy")
+     healthCount++
+}
+var healthiness = (healthCount/listItems.length*100).toFixed(1).toString()+"% healthy"
+let healthinessHeader:HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("listHealth")
 healthinessHeader.innerHTML = healthiness
+}   
 
