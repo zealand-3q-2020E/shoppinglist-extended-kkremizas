@@ -59,7 +59,7 @@ for (let index = 0; index < listItems.length; index++) {
     if (element.getAttribute("class")=="healthy")
      healthCount++
 }
-var healthiness = (healthCount/listItems.length*100).toFixed(1).toString()+"% healthy"
+var healthiness = "The shopping list is "+(healthCount/listItems.length*100).toFixed(1).toString()+"% healthy!"
 let healthinessHeader:HTMLParagraphElement = <HTMLParagraphElement> document.getElementById("listHealth")
 healthinessHeader.innerHTML = healthiness
 }   

@@ -6,6 +6,13 @@ $colorBody: #000000;
     color: $fontColor;
 }
 
+p
+{
+    color: $colorHeading;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 h2
 {
     color: $colorHeading;
